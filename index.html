@@ -110,9 +110,9 @@
   </div>
 
   <div id="currentInfo">
-    <span id="year1990" class="year">1990</span>
-    <span id="year1995" class="year">1995</span>
-    <span id="year2000" class="year">2000</span>
+    <span id="1990" class="year">1990</span>
+    <span id="1995" class="year">1995</span>
+    <span id="2000" class="year">2000</span>
     <span id="test" class="year">Test</span>
   </div>
 
@@ -144,7 +144,7 @@
       var settime = function(globe, t) {
         return function() {
           new TWEEN.Tween(globe).to({time: t/years.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
-          var y = document.getElementById('year'+years[t]);
+          var y = document.getElementById(years[t]);
           if (y.getAttribute('class') === 'year active') {
             return;
           }
