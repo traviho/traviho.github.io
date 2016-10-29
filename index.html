@@ -139,7 +139,7 @@
       Detector.addGetWebGLMessage();
     } else {
 
-      var entries = ['1','2'];
+      var entries = ['1'];
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
 
@@ -148,7 +148,6 @@
       
       var setEntries = function(globe, t) {
         return function() {
-		//globe.reset();
           new TWEEN.Tween(globe).to({time: t/entries.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
           var y = document.getElementById('entry'+entries[t]);
           if (y.getAttribute('class') === 'entry active') {
