@@ -264,8 +264,8 @@ DAT.Globe = function(container, opts) {
       point.geometry.faces[i].color = color;
 
     }
-	
-    cgeo.merge(subgeo, point);
+
+    THREE.GeometryUtils.merge(subgeo, point);
   }
 
   function onMouseDown(event) {
