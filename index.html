@@ -145,6 +145,8 @@
     }
   });
   
+  var tweens = [];
+  
   for(var i = 1; i<=9; i++) {
 	var y = document.getElementById('entry'+i);
     y.addEventListener('mouseover', testfunction(i), false);
@@ -152,7 +154,10 @@
   
   function testfunction(msg){
 	console.log("element" + msg);
+	new TWEEN.Tween(globe).to({time: msg/9},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
   }
+  
+  
   
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'created_file.json', true);
