@@ -125,6 +125,13 @@ function fetchData(mbid, name, rawName) {
 					}
 				};
 			}
+			
+			if(!Detector.webgl){
+				Detector.addGetWebGLMessage();
+			} else {
+				resetGlobe();
+				globe.animate();
+			}
 			xhr.send(null);
 
             $('#infos').fadeIn();
