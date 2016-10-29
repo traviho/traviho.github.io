@@ -106,7 +106,7 @@
   <div id="container"></div>
 
   <div id="info">
-    <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong>	 <span class="bull">&bull;</span> <a href="http://github.com/traviho/traviho.github.io">Github Repo</a> <span class="bull">&bull;</span><a>Data acquired from</a><a href="http://sedac.ciesin.columbia.edu/gpw/">NationMaster</a>
+    <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong>	 <span class="bull">&bull;</span> <a href="http://github.com/traviho/traviho.github.io">Github Repo</a> <span class="bull">&bull;</span><a>Data acquired from</a><a href="http://sedac.ciesin.columbia.edu/gpw/">NationMaster</a><a>and</a><a href="https://developers.google.com/public-data/docs/canonical/countries_csv">countries.csv</a>
   </div>
 
   <div id="currentInfo">
@@ -148,6 +148,7 @@
       
       var setEntries = function(globe, t) {
         return function() {
+		globe.reset();
           new TWEEN.Tween(globe).to({time: t/entries.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
           var y = document.getElementById('entry'+entries[t]);
           if (y.getAttribute('class') === 'entry active') {
