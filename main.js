@@ -108,9 +108,24 @@ function fetchData(mbid, name, rawName) {
                 var venue = curr.venue;
                 return prev.concat([parseFloat(venue.latitude), parseFloat(venue.longitude), cities[curr.formatted_location] * scale]);
             }, []);
-
-            globe.addData(globeDataLL, {format: 'magnitude'});
-            globe.createPoints();
+			
+			var xhr;
+			xhr = new XMLHttpRequest();
+			xhr.open('GET', 'created_file.json', true);
+			xhr.onreadystatechange = function(e) {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						var data = JSON.parse(xhr.responseText);
+						window.data = data;
+						console.log(data);
+						for (i=0;i<data.length;i++) {
+							globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
+						}
+						globe.createPoints();
+					}
+				};
+			}
+			xhr.send(null);
 
             $('#infos').fadeIn();
             $('#artists').hide();
