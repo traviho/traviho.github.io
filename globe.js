@@ -1,6 +1,6 @@
 /**
  * dat.globe Javascript WebGL Globe Toolkit
- * https://github.com/dataarts/webgl-globe
+ * http://dataarts.github.com/dat.globe
  *
  * Copyright 2011 Data Arts Team, Google Creative Lab
  *
@@ -15,13 +15,12 @@ var DAT = DAT || {};
 
 DAT.Globe = function(container, opts) {
   opts = opts || {};
-  
+
   var colorFn = opts.colorFn || function(x) {
     var c = new THREE.Color();
     c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
     return c;
   };
-  var imgDir = opts.imgDir || '';
 
   var Shaders = {
     'earth' : {
@@ -104,7 +103,7 @@ DAT.Globe = function(container, opts) {
     shader = Shaders['earth'];
     uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 
-    uniforms['texture'].value = THREE.ImageUtils.loadTexture(imgDir+'world.jpg');
+    uniforms['texture'].value = THREE.ImageUtils.loadTexture('world.jpg');
 
     material = new THREE.ShaderMaterial({
 
@@ -136,7 +135,7 @@ DAT.Globe = function(container, opts) {
     mesh.scale.set( 1.1, 1.1, 1.1 );
     scene.add(mesh);
 
-    geometry = new THREE.BoxGeometry(0.75, 0.75, 1);
+    geometry = new THREE.CubeGeometry(0.75, 0.75, 1);
     geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0,0,-0.5));
 
     point = new THREE.Mesh(geometry);
@@ -165,12 +164,13 @@ DAT.Globe = function(container, opts) {
     }, false);
   }
 
-  function addData(data, opts) {
+  addData = function(data, opts) {
     var lat, lng, size, color, i, step, colorFnWrapper;
 
     opts.animated = opts.animated || false;
     this.is_animated = opts.animated;
     opts.format = opts.format || 'magnitude'; // other option is 'legend'
+    console.log(opts.format);
     if (opts.format === 'magnitude') {
       step = 3;
       colorFnWrapper = function(data, i) { return colorFn(data[i+2]); }
@@ -264,10 +264,8 @@ DAT.Globe = function(container, opts) {
       point.geometry.faces[i].color = color;
 
     }
-    if(point.matrixAutoUpdate){
-      point.updateMatrix();
-    }
-    subgeo.merge(point.geometry, point.matrix);
+
+    THREE.GeometryUtils.merge(subgeo, point);
   }
 
   function onMouseDown(event) {
@@ -334,9 +332,9 @@ DAT.Globe = function(container, opts) {
   }
 
   function onWindowResize( event ) {
-    camera.aspect = container.offsetWidth / container.offsetHeight;
+    camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( container.offsetWidth, container.offsetHeight );
+    renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
   function zoom(delta) {
@@ -398,10 +396,16 @@ DAT.Globe = function(container, opts) {
     this._time = t;
   });
 
+  function reset() {
+    scene.remove(this.points);
+    this.points = null;
+  }
+
   this.addData = addData;
   this.createPoints = createPoints;
   this.renderer = renderer;
   this.scene = scene;
+  this.reset = reset;
 
   return this;
 
