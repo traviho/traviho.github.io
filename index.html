@@ -148,7 +148,7 @@
       
       var setEntries = function(globe, t) {
         return function() {
-          //new TWEEN.Tween(globe).to({time: t/entries.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
+          new TWEEN.Tween(globe).to({time: t/entries.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
           var y = document.getElementById('entry'+entries[t]);
           if (y.getAttribute('class') === 'entry active') {
             return;
@@ -167,7 +167,7 @@
       }
       
       var xhr;
-      //TWEEN.start();
+      TWEEN.start();
       
       
       xhr = new XMLHttpRequest();
