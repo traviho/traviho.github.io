@@ -265,7 +265,7 @@ DAT.Globe = function(container, opts) {
 
     }
 
-    THREE.geometry.merge(subgeo, point);
+    THREE.Geometry.merge(subgeo, point);
   }
 
   function onMouseDown(event) {
