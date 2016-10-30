@@ -103,14 +103,7 @@
 
       .entry:hover, .entry.active {
         font-size: 18px;
-      }
-	  
-	  .entryYellow:hover, .entryYellow.active {
-        color: #ffff1a;
-      }
-	  
-	  .entryRed:hover, .entryRed.active {
-        color: #ff3333;
+        color: #ccb3ff;
       }
 
       #ce span {
@@ -147,9 +140,9 @@
   </div>
 
   <div id="currentInfo">
-    <span id="entry1" class="entryYellow">GDP per capita</span>
+    <span id="entry1" class="entry">GDP per capita</span>
     <span id="entry2" class="entry">Beer Consumption</span>
-    <span id="entry3" class="entryRed">Violent Crime Rate</span>
+    <span id="entry3" class="entry">Violent Crime Rate</span>
 	<span id="entry4" class="entry">Agriculural land (sq.-km)</span>
 	<span id="entry5" class="entry">Arable Land</span>
 	<span id="entry6" class="entry">Civil Unrest</span>
@@ -183,7 +176,7 @@
       Detector.addGetWebGLMessage();
     } else {
 
-      var entries = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
+      var entries = ['1','2','3'];
       var container = document.getElementById('container');
       var globe = new DAT.Globe(container);
 
