@@ -22,7 +22,9 @@ public class Entry {
 		entryString.append("[");
 		entryString.append("\"" + fieldName + "\",[");
 		boolean addedFirst = false;
-		for (int i = 0;i <= data.length() - 2;i++){
+		double max = retrieveMax();
+		System.out.println(max);
+		for (int i = 21;i <= data.length() - 2;i++){
 			String tempCode = data.substring(i, i + 2);
 			if (JSONWriter.hashMap.containsKey(tempCode)){
 				if (!addedFirst){
@@ -31,11 +33,18 @@ public class Entry {
 					entryString.append("," + JSONWriter.hashMap.get(tempCode).getLatitude());
 				}
 				entryString.append("," + JSONWriter.hashMap.get(tempCode).getLongitude());
-				entryString.append("," + "1");
+				int j = i + 5;
+				String mag = "";
+				while (!(data.substring(j, j+1).equals(",") || data.substring(j, j+1).equals("}"))){
+					mag += data.substring(j, j+1);
+					j++;
+				}
+				mag = "" + (Double.parseDouble(mag) / max);
+				entryString.append("," + mag);
 				addedFirst = true;
 			}
-		}
 		
+		}
 		entryString.append("]]");
 		return entryString;
 	}
@@ -85,6 +94,26 @@ public class Entry {
 				e.printStackTrace();
 			}
 		return dataString.toString();
+	}
+	
+	private double retrieveMax(){
+		double max = 0;//ok because no negative magnitudes
+		
+		for (int i = 21;i <= data.length() - 2;i++){
+			String tempCode = data.substring(i, i + 2);
+			if (JSONWriter.hashMap.containsKey(tempCode)){
+				int j = i + 5;
+				String mag = "";
+				while (!(data.substring(j, j+1).equals(",") || data.substring(j, j+1).equals("}"))){
+					mag += data.substring(j, j+1);
+					j++;
+				}
+				if (Double.parseDouble(mag) > max){
+					max = Double.parseDouble(mag);
+				}
+			}
+		}
+		return max;
 	}
 	
 }//61.5, -142.9
