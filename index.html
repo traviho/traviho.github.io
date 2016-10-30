@@ -161,7 +161,7 @@
         };
       };
       
-      for(var i = 1; i<=entries.length; i++) {
+      for(var i = 0; i<entries.length; i++) {
         var y = document.getElementById('entry'+entries[i]);
         y.addEventListener('mouseover', setEntries(globe,i), false);
       }
