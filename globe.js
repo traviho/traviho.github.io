@@ -1,6 +1,6 @@
 /**
  * dat.globe Javascript WebGL Globe Toolkit
- * http://dataarts.github.com/dat.globe
+ * https://github.com/dataarts/webgl-globe
  *
  * Copyright 2011 Data Arts Team, Google Creative Lab
  *
@@ -15,12 +15,13 @@ var DAT = DAT || {};
 
 DAT.Globe = function(container, opts) {
   opts = opts || {};
-
+  
   var colorFn = opts.colorFn || function(x) {
     var c = new THREE.Color();
     c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
     return c;
   };
+  var imgDir = opts.imgDir || '/globe/';
 
   var Shaders = {
     'earth' : {
@@ -103,7 +104,7 @@ DAT.Globe = function(container, opts) {
     shader = Shaders['earth'];
     uniforms = THREE.UniformsUtils.clone(shader.uniforms);
 
-    uniforms['texture'].value = THREE.ImageUtils.loadTexture('world.jpg');
+    uniforms['texture'].value = THREE.ImageUtils.loadTexture(imgDir+'world.jpg');
 
     material = new THREE.ShaderMaterial({
 
@@ -164,13 +165,12 @@ DAT.Globe = function(container, opts) {
     }, false);
   }
 
-  addData = function(data, opts) {
+  function addData(data, opts) {
     var lat, lng, size, color, i, step, colorFnWrapper;
 
     opts.animated = opts.animated || false;
     this.is_animated = opts.animated;
     opts.format = opts.format || 'magnitude'; // other option is 'legend'
-    console.log(opts.format);
     if (opts.format === 'magnitude') {
       step = 3;
       colorFnWrapper = function(data, i) { return colorFn(data[i+2]); }
@@ -264,8 +264,10 @@ DAT.Globe = function(container, opts) {
       point.geometry.faces[i].color = color;
 
     }
-
-    THREE.Geometry.merge(subgeo, point);
+    if(point.matrixAutoUpdate){
+      point.updateMatrix();
+    }
+    subgeo.merge(point.geometry, point.matrix);
   }
 
   function onMouseDown(event) {
@@ -332,9 +334,9 @@ DAT.Globe = function(container, opts) {
   }
 
   function onWindowResize( event ) {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.aspect = container.offsetWidth / container.offsetHeight;
     camera.updateProjectionMatrix();
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize( container.offsetWidth, container.offsetHeight );
   }
 
   function zoom(delta) {
@@ -396,16 +398,10 @@ DAT.Globe = function(container, opts) {
     this._time = t;
   });
 
-  function reset() {
-    scene.remove(this.points);
-    this.points = null;
-  }
-
   this.addData = addData;
   this.createPoints = createPoints;
   this.renderer = renderer;
   this.scene = scene;
-  this.reset = reset;
 
   return this;
 
