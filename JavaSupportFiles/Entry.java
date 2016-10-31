@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Iterator;
 
 public class Entry {
-
+	
 	String fieldName, link;
 	String data;
 	StringBuffer entryString = new StringBuffer();
@@ -19,39 +20,31 @@ public class Entry {
 	}
 	
 	public StringBuffer getEntry(){
+		JSONWriter.refreshHashMap();
 		entryString.append("[");
 		entryString.append("\"" + fieldName + "\",[");
 		boolean addedFirst = false;
 		double max = retrieveMax();
-		int count = 0;
 		
-		for (int i = 21;i <= data.length() - 2;i++){
-			String tempCode = data.substring(i, i + 2);
-			if (JSONWriter.hashMap.containsKey(tempCode)){
-				if (!addedFirst){
-					entryString.append(JSONWriter.hashMap.get(tempCode).getLatitude());
-				} else {
-					entryString.append("," + JSONWriter.hashMap.get(tempCode).getLatitude());
-				}
-				entryString.append("," + JSONWriter.hashMap.get(tempCode).getLongitude());
-				int j = i + 5;
-				String mag = "";
-				while (!(data.substring(j, j+1).equals(",") || data.substring(j, j+1).equals("}"))){
-					mag += data.substring(j, j+1);
-					j++;
-				}
-				mag = "" + (Double.parseDouble(mag) / max);
-				entryString.append("," + mag);
+		Iterator<java.util.Map.Entry<String, Country>> it = JSONWriter.hashMap.entrySet().iterator();
+		
+		while (it.hasNext()){
+			Country country = it.next().getValue();
+
+			if (!addedFirst){
+				entryString.append(country.getLatitude());
 				addedFirst = true;
-				count++;
+			} else {
+				entryString.append("," + country.getLatitude());
 			}
+			entryString.append("," + country.getLongitude());
+			double mag = Double.parseDouble(country.getMagnitude()) / max;
+			if (mag < .001){
+				mag = .001;
+			}
+			entryString.append("," + mag);
+		}
 		
-		}
-		int difference = 244 - count;
-		for (int j = 0;j < difference;j++){
-			entryString.append(",0,0,0");
-		}
-		System.out.println(difference + count);
 		entryString.append("]]");
 		return entryString;
 	}
@@ -118,6 +111,7 @@ public class Entry {
 				if (Double.parseDouble(mag) > max){
 					max = Double.parseDouble(mag);
 				}
+				JSONWriter.hashMap.get(tempCode).setMagnitude(mag);
 			}
 		}
 		return max;

@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,7 +23,7 @@ public class JSONWriter {
 	}
 	
 	public void createEntry(String fieldName, String link){
-		Entry newEntry = new Entry(fieldName, link);
+		creationJSON.Entry newEntry = new creationJSON.Entry(fieldName, link);
 		
 		if (createdFirstEntry){
 			stringBuffer.append(",");
@@ -57,7 +59,17 @@ public class JSONWriter {
 		}
 		Elements formEl = document.getElementsByTag("td");
 		for (int j = 0;j < formEl.size() - 4;j += 4){
-			hashMap.put(formEl.get(j).html(), new Country(formEl.get(j + 1).html(), formEl.get(j + 2).html(), formEl.get(j + 3).html()));
+			if (formEl.get(j + 1).html().length() != 0){
+				hashMap.put(formEl.get(j).html(), new Country(formEl.get(j + 1).html(), formEl.get(j + 2).html(), formEl.get(j + 3).html(), "0"));
+			}
+		}
+	}
+	
+	public static void refreshHashMap(){
+		Iterator<Entry<String, Country>> it = hashMap.entrySet().iterator();
+		
+		while (it.hasNext()){
+			it.next().getValue().setMagnitude("0");
 		}
 	}
 }
