@@ -21,7 +21,6 @@ public class JSONDriver {
 		jsonWriter.createEntry("14", "http://www.nationmaster.com/country-info/stats/Education/Adult-literacy-rate/Total");
 		jsonWriter.createEntry("15", "http://www.nationmaster.com/country-info/stats/Energy/Electric-power-consumption/KWh-per-capita");
 		jsonWriter.createEntry("16", "http://www.nationmaster.com/country-info/stats/Military/Air-force/Combat-aircraft");
-
 		
 		jsonWriter.write();
 	}

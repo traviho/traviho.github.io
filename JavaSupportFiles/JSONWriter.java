@@ -37,8 +37,6 @@ public class JSONWriter {
 			file.createNewFile();
 			FileWriter fileWriter = new FileWriter(file);
 			
-			//stringBuffer.append("[[\"1990\",[6,159,20,30,99,20]],[\"1995\",[64,19,0.1,30,9,25]],[\"2000\",[1,139,23,60,93,50]]]");
-			
 			fileWriter.write(stringBuffer.toString());
 			fileWriter.flush();
 			fileWriter.close();

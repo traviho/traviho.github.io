@@ -49,7 +49,7 @@ public class Entry {
 		}
 		int difference = 244 - count;
 		for (int j = 0;j < difference;j++){
-			entryString.append(",0.1,0.1,0.01");
+			entryString.append(",0,0,0");
 		}
 		System.out.println(difference + count);
 		entryString.append("]]");
@@ -123,4 +123,4 @@ public class Entry {
 		return max;
 	}
 	
-}//61.5, -142.9
+}
