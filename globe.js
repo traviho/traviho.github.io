@@ -201,14 +201,15 @@ DAT.Globe = function(container, opts) {
       opts.name = opts.name || 'morphTarget'+this._morphTargetId;
     }
     var subgeo = new THREE.Geometry();
-	console.log("data length: " + data.length)
-	console.log("step: " + step)
+	//console.log("data length: " + data.length)
+	//console.log("step: " + step)
     for (i = 0; i < data.length; i += step) {
       lat = data[i];
       lng = data[i + 1];
       color = colorFnWrapper(data,i);
       size = data[i + 2];
       size = size*200;
+	  console.log("size " + i + ": " + size)
       addPoint(lat, lng, size, color, subgeo);
     }
     if (opts.animated) {
