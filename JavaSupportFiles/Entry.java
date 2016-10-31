@@ -23,7 +23,8 @@ public class Entry {
 		entryString.append("\"" + fieldName + "\",[");
 		boolean addedFirst = false;
 		double max = retrieveMax();
-		System.out.println(max);
+		int count = 0;
+		
 		for (int i = 21;i <= data.length() - 2;i++){
 			String tempCode = data.substring(i, i + 2);
 			if (JSONWriter.hashMap.containsKey(tempCode)){
@@ -42,9 +43,15 @@ public class Entry {
 				mag = "" + (Double.parseDouble(mag) / max);
 				entryString.append("," + mag);
 				addedFirst = true;
+				count++;
 			}
 		
 		}
+		int difference = 244 - count;
+		for (int j = 0;j < difference;j++){
+			entryString.append(",0.1,0.1,0.01");
+		}
+		System.out.println(difference + count);
 		entryString.append("]]");
 		return entryString;
 	}
