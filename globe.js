@@ -209,7 +209,7 @@ DAT.Globe = function(container, opts) {
       color = colorFnWrapper(data,i);
       size = data[i + 2];
       size = size*200;
-	  console.log("size " + i + ": " + size)
+	  //console.log("size " + i + ": " + size)
       addPoint(lat, lng, size, color, subgeo);
     }
     if (opts.animated) {
