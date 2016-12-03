@@ -1,238 +1,275 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>WebGL Globe</title>
+<head>
     <meta charset="utf-8">
-    <style type="text/css">
-      html {
-        height: 100%;
-      }
-      body {
-        margin: 0;
-        padding: 0;
-        background: #000000 url(loading.gif) center center no-repeat;
-        color: #ffffff;
-        font-family: sans-serif;
-        font-size: 13px;
-        line-height: 20px;
-        height: 100%;
-      }
+	<title>Kodactive Homepage</title>
+	<link rel="stylesheet" href="app.css" />
+	<link rel = "stylesheet" type="text/css" href="Vendors/normalize.css">
+    <link rel = "stylesheet" type="text/css" href="Vendors/grid.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header>
+      <nav>
+        <div class="row">
+          <img src="https://www.google.com/a/kodactive.com/images/logo.gif?alpha=1&service=google_default" alt="kodactive logo" class="logo"/>
+            <ul class="main-nav">
+              <li><a href="#our-mission">Our Mission</a></li>
+              <li><a href="#get-started">Get Started</a></li>
+              <li><a href="#purchase">Purchase</a></li>
+              <li><a href="#feedback">Feedback</a></li>
+              <li onclick="goLogin()"><a href="#">Sign Up</a></li>
+              <li onclick="goLogin()"><a href="#" onclick="goLogin">Login</a></li>
+            </ul>
+        </div>
+      </nav>
+      <div class="backdrop-textbox">
+        <h1>Learn to code.<br/>In an active way.<br/>Introducing Kodactive.</h1>
+        <a class="btn btn-ghost" href="#" onclick="goLogin()">Sign me up</a>
+        <a class="btn btn-ghost" href="#our-mission">Show me more</a>
+      </div>
+    </header>
 
-      #info {
+    <section class="section-features" id="our-mission">
+        <div class="row">
+            <h2>Say Goodbye &mdash; To Boring Print Statements</h2>
+            <p class="long-copy">
+            At Kodactive, we believe that coding should be a fun, interactive, and immersive experience for people of all ages and skill level.
+            </p>
+        </div>
 
-        font-size: 11px;
-        position: absolute;
-        bottom: 5px;
-        background-color: rgba(0,0,0,0.8);
-        border-radius: 3px;
-        right: 10px;
-        padding: 10px;
+        <div class="row">
+            <div class="col span-1-of-4 box">
+                <i class="material-icons icon-big">tram</i>
+                <h3>Multiple devices, multiple levels</h3>
+                <p>Using Kodactive is as simple as creating a free account. Once you create an account, you'll have access to our custom platform that will teach you how to code as well as program an RC car. Just starting out? Cool, code an RC car to move the way you want. Not big into RC car? Thats fine! At Kodactive we have a line of devices stemming from cars to drones to even robots!</p>
+            </div>
+            <div class="col span-1-of-4 box">
+                <i class="material-icons icon-big">spellcheck</i>
+                <h3>Track your progress</h3>
+                <p>Learn coding topic by topic. If you are a beginner, you can start by dragging and dropping code blocks. This will help you to think like a coder. After you have mastered the higher-level concepts of coding, we will transition into a text editor. Then, you will code like a coder in a language of you choice such as Java, JavaScript, C++, and many more!</p>
+            </div>
+            <div class="col span-1-of-4 box">
+                <i class="material-icons icon-big">android</i>
+                <h3>Code anywhere, anytime</h3>
+                <p>You practically code your Kodactive device anywhere! Whether your at school working on a project, or in the back of your car going back home from school, or even at home! Kodactive is accessible on both mobile and web applications so no matter what you have you can still learn to code!</p>
+            </div>
+            <div class="col span-1-of-4 box">
+                <i class="material-icons icon-big">school</i>
+                <h3>Perfect for schools</h3>
+                <p>Computer science is a field in high demand right now. Universities, high schools, and even elementary/middle schools are competing with each other to offer the best computer science programs. With Kodactive, students can begin coding actual hardware right in their computer labs!</p>
+            </div>
 
-      }
-	  
-	  #myweblink {
+        </div>
+    </section>
 
-        font-size: 12px;
-        position: absolute;
-        top: 5px;
-        background-color: rgba(0,0,0,0.8);
-        border-radius: 3px;
-        right: 10px;
-        padding: 10px;
+    <section class="section-steps" id="get-started">
+        <div class="row">
+            <h2>Start coding &mdash; with a K</h2>
 
-      }
-	  
-	  #descriptor {
+        </div>
+        <div class="row">
+            <div class="col span-1-of-2 steps-box">
+                <img src="http://www.thothought.com/Vendors/devices.png" alt="devices" class="app-screen"/>
+            </div>
+            <div class="col span-1-of-2 steps-box shift-left">
+                <div class="works-step">
+                    <div>1</div>
+                    <p><a href="#">Sign up</a> to create a free user account.</p>
+                </div>
+                <div class="works-step">
+                    <div>2</div>
+                    <p><a href="#">Order</a> one or more of our Kodactive devices.</p>
+                </div>
+                <div class="works-step">
+                    <div>3</div>
+                    <p><a href="#">Log in</a> from your phone or computer and begin coding! Then, watch your Kodactive device do exactly what you code it to do.</p>
+                </div>
 
-        font-size: 12px;
-        text-align: center;
-        top: 5px;
-        background-color: rgba(0,0,0,0.8);
-        padding: 10px;
+                <a href="#" class="btn-app"><img src="http://www.thothought.com/Vendors/download-app.svg" alt="download app iOS"/></a>
+                <a href="#" class="btn-app"><img src="http://www.thothought.com/Vendors/download-app-android.png" alt="download app android"/></a>
+            </div>
+        </div>
+    </section>
 
-      }
+    <section class="section-testimonials" id="feedback">
+        <div class="row">
+            <h2>What people are saying about us.</h2>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-2">
+                <blockquote>
+                    After getting to meet the team and seeing the product in use, I fully believe Kodactive can change they way our kids are taught STEM.
+                    <cite><img src="Kodactive%20Contents/blake.jpg" alt="cutomer 1"/>Blake Gudgel</cite>
+                </blockquote>
+            </div>
+            <div class="col span-1-of-2">
+                <blockquote>
+                    Throughout my career, I have seen many educational tools. Kodactive has to be, by far, the most intutive product I have seen to date. The lessons are simple and flow easily, and the experience of making the car move under your own control is extraordinary!
+                    <cite><img src="Kodactive%20Contents/doug.jpg" alt="cutomer 2"/>Douglas McCormack</cite>
+                </blockquote>
+            </div>
+        </div>
+    </section>
 
-      #currentInfo {
-        width: 270px;
-        position: absolute;
-        left: 20px;
-        top: 63px;
+    <section class="sign-up-section" id="purchase">
+        <div class="row">
+            <h2>Order your Kodactive device today</h2>
+        </div>
+        <div class="row">
+            <div class="col span-1-of-3">
+                <div class="plan-box">
+                    <div>
+                        <h3>Beginner package</h3>
+                        <p class="plan-price">$60</p>
+                        <p class="plan-price-desc">Great for beginners with Kodactive.</p>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><i class="material-icons">face</i>Great for Beginners</li>
+                            <li><i class="material-icons">tram</i>Comes with 1 device of your choice</li>
+                            <li><i class="material-icons">code</i>All the essentials you need to start coding with a K</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-ghost">Purchase</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col span-1-of-3">
+                <div class="plan-box">
+                    <div>
+                        <h3>Intermediate Package</h3>
+                        <p class="plan-price">$100</p>
+                        <p class="plan-price-desc">Double up on the fun!</p>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><i class="material-icons">face</i>Great for Beginners</li>
+                            <li><i class="material-icons">tram</i>Comes with 2 devices of your choice</li>
+                            <li><i class="material-icons">code</i>All the essentials you need to start coding with a K</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-ghost">Purchase</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col span-1-of-3">
+                <div class="plan-box">
+                    <div>
+                        <h3>Class package</h3>
+                        <p class="plan-price">$1000</p>
+                        <p class="plan-price-desc">Teach your students using Kodactive.</p>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><i class="material-icons">face</i>Great for students</li>
+                            <li><i class="material-icons">tram</i>Comes with classroom set of 30 devices</li>
+                            <li><i class="material-icons">code</i>All the essentials you need for your students to start coding with a K</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <a href="#" class="btn btn-ghost">Purchase</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        background-color: rgba(0,0,0,0.2);
+    <section class="section-form">
+        <div class="row">
+            <h2>How did you hear about us?</h2>
+        </div>
+        <div class="row">
+            <form method="post" action="#" class="contact-form">
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label form="name">Name</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="text" name="name" id="name" placeholder="Your name" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label form="email">Email</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="email" name="email" id="email" placeholder="Your email" required/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label form="find-us">How did you find us?</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <select name="find-us" id="find-us">
+                            <option value="friends" selected>Friends</option>
+                            <option value="search">Search Engine</option>
+                            <option value="ad">Advertisement</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label form="news">Newsletter?</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="checkbox" name="news" id="news" checked/> Yes, Please
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label form="message">Drop us a line</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <textarea name="message" id="message" placeholder="Your message"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label>&nbsp;</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="submit" value="Drop it!"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
 
-        border-top: 1px solid rgba(255,255,255,0.4);
-        padding: 10px;
-      }
-
-      a {
-        color: #aaa;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .bull {
-        padding: 0 5px;
-        color: #555;
-      }
-
-      #title {
-        position: absolute;
-        top: 20px;
-        width: 270px;
-        left: 60px;
-        background-color: rgba(0,0,0,0.2);
-        border-radius: 3px;
-        font: 20px Georgia;
-        padding: 10px;
-      }
-
-      .entry {
-        font: 16px Georgia;
-        line-height: 26px;
-        height: 30px;
-        text-align: center;
-        float: left;
-        width: 270px;
-        color: rgba(255, 255, 255, 0.4);
-
-        cursor: pointer;
-        -webkit-transition: all 0.1s ease-out;
-      }
-
-      .entry:hover, .entry.active {
-        font-size: 18px;
-        color: #ccb3ff;
-      }
-
-      #ce span {
-        display: none;
-      }
-
-      #ce {
-        width: 107px;
-        height: 55px;
-        display: block;
-        position: absolute;
-        bottom: 15px;
-        left: 20px;
-        background: url(ce.png);
-      }
-
-
-    </style>
-  </head>
-  <body>
-
-  <div id="container"></div>
-
-  <div id="info">
-    <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong>	 <span class="bull">&bull;</span> <a href="http://github.com/traviho/traviho.github.io">Github Repo</a> <span class="bull">&bull;</span><a>Data acquired from </a><a href="http://www.nationmaster.com/country-info/stats">NationMaster</a><a> and </a><a href="https://developers.google.com/public-data/docs/canonical/countries_csv">countries.csv</a>
-  </div>
-  
-  <div id="myweblink">
-    <strong><a href="build/reactPage.html">Check out more on my website</a></strong>
-  </div>
-  
-  <div id="descriptor">
-    Compare countries on almost anything!
-  </div>
-
-  <div id="currentInfo">
-    <span id="entry1" class="entry">Land Area (sq. miles)</span>
-    <span id="entry2" class="entry">Beer Consumption</span>
-    <span id="entry3" class="entry">Violent Crime/murder rate</span>
-	<span id="entry4" class="entry">Agriculural land (sq.-km)</span>
-	<span id="entry5" class="entry">Oil Consumption</span>
-	<span id="entry6" class="entry">Arab-Spring-death-toll</span>
-	<span id="entry7" class="entry">Nike Shoe Prices</span>
-	<span id="entry8" class="entry">GDP per capita</span>
-	<span id="entry9" class="entry">Happy planet index</span>
-	<span id="entry10" class="entry">World Heritage Sites</span>
-	<span id="entry11" class="entry">Chernobyl Contamination</span>
-	<span id="entry12" class="entry">Storm Deaths 2009</span>
-	<span id="entry13" class="entry">Population Below Poverty Line</span>
-	<span id="entry14" class="entry">Adult Literacy Rate</span>
-	<span id="entry15" class="entry">Electric Power Consumption</span>
-	<span id="entry16" class="entry">Military Combat Aircraft</span>
-  </div>
-
-  <div id="title">
-    Country Comparator
-  </div>
-
-  <!--<a id="ce" href="http://www.chromeexperiments.com/globe">
-    <span>This is (Not) a Chrome Experiment</span>
-  </a>-->
-
-  <script type="text/javascript" src="third-party/Detector.js"></script>
-  <script type="text/javascript" src="third-party/three.min.js"></script>
-  <script type="text/javascript" src="third-party/Tween.js"></script>
-  <script type="text/javascript" src="globe.js"></script>
-  <script type="text/javascript">
-
-    if(!Detector.webgl){
-      Detector.addGetWebGLMessage();
-    } else {
-
-      var entries = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
-
-      var container = document.getElementById('container');
-      var globe = new DAT.Globe(container);
-
-      console.log(globe);
-      var i, tweens = [];
-      
-      var setEntries = function(globe, t) {
-        return function() {
-          new TWEEN.Tween(globe).to({time: t/entries.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
-          var y = document.getElementById('entry'+entries[t]);
-          if (y.getAttribute('class') === 'entry active') {
-            return;
-          }
-          var yy = document.getElementsByClassName('entry');
-          for(i=0; i<yy.length; i++) {
-            yy[i].setAttribute('class','entry');
-          }
-          y.setAttribute('class', 'entry active');
-        };
-      };
-      
-      for(var i = 0; i<entries.length; i++) {
-        var y = document.getElementById('entry'+entries[i]);
-        y.addEventListener('mouseover', setEntries(globe,i), false);
-      }
-      
-      var xhr;
-      TWEEN.start();
-      
-      
-      xhr = new XMLHttpRequest();
-      xhr.open('GET', 'created_file.json', true);
-      xhr.onreadystatechange = function(e) {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            var data = JSON.parse(xhr.responseText);
-            window.data = data;
-              console.log(data);
-			  //console.log("length " + data.length);
-            for (i=0;i<data.length;i++) {
-				//console.log("set for " + i);
-              globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
-            }
-            globe.createPoints();
-            setEntries(globe,0)();
-            globe.animate();
-            document.body.style.backgroundImage = 'none'; // remove loading
-          }
-        }
-      };
-      xhr.send(null);
+    <footer>
+        <div class="row">
+            <div class="col span-1-of-2">
+                <ul class="footer-nav">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">In the Press</a></li>
+                    <li><a href="#">iOS App</a></li>
+                    <li><a href="#">Android App</a></li>
+                </ul>
+            </div>
+            <div class="col span-1-of-2">
+                <ul class="social-links">
+                    <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                    <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                    <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                    <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <p>
+                Copyright &copy; Kodactive. All rights reserved.
+            </p>
+        </div>
+    </footer>
+    <script>
+    function goLogin() {
+      window.location = "login/index.html";
     }
-
-  </script>
-
-  </body>
-
+    </script>
+</body>
 </html>
