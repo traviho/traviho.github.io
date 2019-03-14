@@ -34,6 +34,7 @@ function createTreeTable(googleFormArray) {
     googleFormArray.forEach(formObj => {
         table[formObj.name] = {
             "name": formObj["name"],
+            "chinese-name": formObj["chinese-name"],
             "sibling-position": formObj["sibling-position"],
             "era": formObj["era"],
             "birth-location": formObj["birth-location"],
@@ -69,13 +70,14 @@ function createTreeData() {
 // node click, create modal using JQuery
 function nodeClick(name, extra) {
     const nameTitle = (table[name]["name"] === "") ? "Name" : table[name]["name"];
+    const chineseNameTitle = (table[name]["chinese-name"] === "") ? "" : " " + table[name]["chinese-name"];
     const siblingPosition = table[name]["sibling-position"];
     const profileImage = (table[name]["image"] === "") ? "man-user.png" : table[name]["image"];
     const eraTitle = (table[name]["era"] === "") ? "Time Period" : table[name]["era"];
     const birthLocationTitle = (table[name]["birth-location"] === "") ? "Birth Location" : table[name]["birth-location"];
     const description = (table[name]["description"] === "") ? "Description" : table[name]["description"];
     
-    $('#description-modal-title').text(nameTitle);
+    $('#description-modal-title').text(nameTitle + chineseNameTitle);
     $('#description-modal-profile-image').attr("src", profileImage);
     $('#description-modal-era-header').text(eraTitle);
     $('#description-modal-birth-location-header').text(birthLocationTitle);
