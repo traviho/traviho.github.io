@@ -1,18 +1,82 @@
-<!DOCTYPE html>
-<html>
+<!-- Known bugs: 1. increasing window size 2. Height is full height of doc and not yang graph id -->
+
+<!doctype html>
+<html lang="en">
     <head>
-        <title>Yang Family Tree</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link href="https://fonts.googleapis.com/css?family=Playfair+Display|Source+Sans+Pro:400,600" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+
+        <title>Yang Family Tree</title>
     </head>
     <body>
-
-        <h1>Yang Family Tree</h1>
-        <div id="yang-graph"></div>
+        <!-- Navbar -->
+        <nav class = "navbar" role = "navigation">
+            <div class = "navbar-header">
+                <a class = "navbar-brand" href = "#">Family Tree</a>
+             </div>
+        </nav>
         
+        <!-- Div where DTree is injected -->
+        <div id="yang-graph"></div>
+      
+        <!-- Modal -->
+        <div class="modal fade bd-example-modal-lg" id="description-modal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content background-mono-0">
+                    <div class="modal-header background-mono-1">
+                        <h5 class="modal-title text-serif text-color-2" id="description-modal-title">Name</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6">
+                                    <img id="description-modal-profile-image" src="man-user.png" class="img-fluid border-radius-50" alt="No Profile!">
+                                </div>
+                                <div class="col-md-3"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <h5 class="text-sans text-grey text-padded">
+                                        <span>(</span>
+                                        <span id="description-modal-era-header">Time Period</span>
+                                        <span>) </span>
+                                        <span id="description-modal-birth-location-header">Birth Location</span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p id="description-modal-description" class="text-sans text-grey text-center">Description.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabletop for Google Sheets -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
+        
+        <!-- Bootstrap plugins -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <!-- Dtree plugins -->
         <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11/lodash.min.js"></script>
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src="https://cdn.rawgit.com/ErikGartner/dTree/2.0.2/dist/dTree.min.js"></script>
-
+        
+        <!-- main js -->
         <script src="main.js"></script>
     </body>
 </html>

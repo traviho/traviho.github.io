@@ -1,149 +1,95 @@
-/**** Dad's side of the family (Ho) ****/
+/*
+Google Form Input is an array of objects, containing name, data, and children information
+*/
+const table = {};
 
-treeDataHo = [{
-    "name": "Ho Shui Pong",
-    "class": "man",
-    "marriages": [{
-        "spouse": {
-        "name": "Cai Gui",
-        "class": "woman",
-        },
-        "children": [
-            {
-                "name": "1st Brother",
-                "class": "man"
-            },
-            {
-                "name": "2nd Brother",
-                "class": "man"
-            },
-            {
-                "name": "3rd Brother",
-                "class": "man"
-            },
-            {
-                "name": "1st Sister",
-                "class": "woman"
-            },
-            {
-                "name": "2nd Sister",
-                "class": "woman"
-            },
-            {
-                "name": "3rd Sister",
-                "class": "woman"
-            },
-            {
-                "name": "4th Sister",
-                "class": "woman"
-            },
-            {
-                "name": "5th Sister",
-                "class": "woman"
-            },
-            {
-                "name": "6th Sister",
-                "class": "woman"
-            },
-            {
-                "name": "7th Sister",
-                "class": "woman"
-            },
-            {
-                "name": "Sing Ho (1965)",
+function createTreeDataAux(key, visited) {
+    const obj = {
+        "name": key,
+        "class": "man"
+    };
+    const spouse = table[key].spouse;
+
+    visited.add(key);
+    visited.add(spouse);
+
+    if (spouse !== "") {
+        const children = [];
+        table[key].children.forEach(child => {
+            // if (!visited.has(child)) {
+                children.push(createTreeDataAux(child, visited));
+            // }
+        });
+        obj["marriages"] = [{
+            "spouse": {
+                "name": spouse,
                 "class": "man",
-                "marriages": [{
-                    "spouse": {
-                    "name": "Erica Yang (1962)",
-                    "class": "woman"
-                    },
-                    "children": [
-                        {
-                            "name": "Travis Ho (1998)",
-                            "class": "man",
-                        },
-                        {
-                            "name": "Rebecca Ho (1996)",
-                            "class": "woman"
-                        }
-                    ]
-                }]
+            },
+            "children": children,
+        }];
+    }
+    return obj;
+}
+function createTreeTable(googleFormArray) {
+    googleFormArray.forEach(formObj => {
+        table[formObj.name] = {
+            "name": formObj["name"],
+            "sibling-position": formObj["sibling-position"],
+            "era": formObj["era"],
+            "birth-location": formObj["birth-location"],
+            "image": formObj["image"],
+            "description": formObj["description"],
+            "children": formObj["children"] === "" ? [] : formObj["children"].split(","),
+            "spouse": formObj["spouse"],
+        }
+        table[formObj.name].children.forEach(child => {
+            if (table[child]) {
+                table[child].parent = formObj.name;
             }
-        ]
-    }]
-}]
+        });
+    });
+    console.log(table);
+}
 
-/**** Mom's side of the family (Yang) ****/
+function createTreeData() {
+    const res = [];
+    const visited = new Set();
 
-treeDataYang = [{
-    "name": "Liao Shi Xiang",
-    "class": "woman",
-    "marriages": [{
-        "spouse": {
-        "name": "Yang Chin Chung",
-        "class": "man",
-        },
-        "children": [
-            {
-                "name": "Erica Yang (1962) 3rd Sister",
-                "class": "woman",
-                "marriages": [{
-                    "spouse": {
-                    "name": "Sing Ho (1965)",
-                    "class": "man"
-                    },
-                    "children": [
-                        {
-                            "name": "Rebecca Ho (1996)",
-                            "class": "woman"
-                        },
-                        {
-                            "name": "Travis Ho (1998)",
-                            "class": "man",
-                        }
-                    ]
-                }]
-            },
-            {
-                "name": "1st Brother",
-                "class": "man"
-            },
-            {
-                "name": "2nd Brother",
-                "class": "man"
-            },
-            {
-                "name": "3rd Brother",
-                "class": "man"
-            },
-            {
-                "name": "4th Brother",
-                "class": "man"
-            },
-            {
-                "name": "5th Brother",
-                "class": "man"
-            },
-            {
-                "name": "1st Sister",
-                "class": "woman"
-            },
-            {
-                "name": "2nd Sister",
-                "class": "woman"
+    for (var key in table) {
+        if (table[key].parent === undefined) {
+            if (!visited.has(key)){
+                res.push(createTreeDataAux(key, visited));
             }
-        ]
-    }]
-}]
+        }
+    }
+    return res;
+}
+
+/* Set up DTree */
+// node click, create modal using JQuery
+function nodeClick(name, extra) {
+    const nameTitle = (table[name]["name"] === "") ? "Name" : table[name]["name"];
+    const siblingPosition = table[name]["sibling-position"];
+    const profileImage = (table[name]["image"] === "") ? "man-user.png" : table[name]["image"];
+    const eraTitle = (table[name]["era"] === "") ? "Time Period" : table[name]["era"];
+    const birthLocationTitle = (table[name]["birth-location"] === "") ? "Birth Location" : table[name]["birth-location"];
+    const description = (table[name]["description"] === "") ? "Description" : table[name]["description"];
+    
+    $('#description-modal-title').text(nameTitle);
+    $('#description-modal-profile-image').attr("src", profileImage);
+    $('#description-modal-era-header').text(eraTitle);
+    $('#description-modal-birth-location-header').text(birthLocationTitle);
+    $('#description-modal-description').text(description);
+    
+    $('#description-modal').modal('show');
+}
 
 extras = {
     debug: true,
-    height: 800,
-    width: 1200,
+    height: $(window).height(),
+    width: $(window).width(),
     callbacks: {
-        nodeClick: function(name, extra) {
-        console.log(name);
-        },
+        nodeClick: nodeClick,
         textRenderer: function(name, extra, textClass) {
             // THis callback is optinal but can be used to customize
         // how the text is rendered without having to rewrite the entire node
@@ -167,12 +113,22 @@ extras = {
     }
 }
 
-dTree.init(treeDataYang, {
-    target: "#yang-graph",
-    ...extras
-});
-
-dTree.init(treeDataHo, {
-    target: "#ho-graph",
-    ...extras
-});
+// Set up google form, and load DTree after loaded.
+var yangSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1Z9TJKi2Ud8jQmxWpdDlbaNzDR2tRquWi3BQcExUSOCE/pubhtml';
+function init() {
+    Tabletop.init({
+        key: yangSpreadsheetUrl,
+        callback: function(data, tabletop) { 
+            console.log(data);
+            createTreeTable(data);
+            const treeData = createTreeData();
+            console.log(treeData);
+            dTree.init(treeData, {
+                target: "#yang-graph",
+                ...extras
+            });
+        },
+        simpleSheet: true
+    });
+}
+window.addEventListener("DOMContentLoaded", init);

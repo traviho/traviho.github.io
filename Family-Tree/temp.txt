@@ -1,0 +1,147 @@
+mapNameToData = {
+    "Travis Ho": {
+        "name": "Travis Ho",
+        "sibling-position": "1st Brother",
+        "era": "1998",
+        "birth-location": "Maryland, U.S.A.",
+        "image": "profile.jpg",
+        "description": "Travis Ho was born an American citizen in 1998 in a small rural town in Frederick, Maryland. He was the youngest of two, with an older sister of two years. His small family of 4 moved to Long Island, New York in 2001, where Travis spent most of his early years growing up. At 17, he moved to College Park, Maryland to attend school at the University of Maryland where he is now pursuing a B.S. in Computer Science."
+    }
+}
+
+
+treeDataYang = [{
+    "name": "Liao Shi Xiang",
+    "class": "woman",
+    "marriages": [{
+        "spouse": {
+        "name": "Yang Chin Chung",
+        "class": "man",
+        },
+        "children": [
+            {
+                "name": "Erica Yang (1962) 3rd Sister",
+                "class": "woman",
+                "marriages": [{
+                    "spouse": {
+                    "name": "Sing Ho (1965)",
+                    "class": "man"
+                    },
+                    "children": [
+                        {
+                            "name": "Rebecca Ho (1996)",
+                            "class": "woman"
+                        },
+                        {
+                            "name": "Travis Ho",
+                            "class": "man",
+                        }
+                    ]
+                }]
+            },
+            {
+                "name": "1st Brother",
+                "class": "man"
+            },
+            {
+                "name": "2nd Brother",
+                "class": "man"
+            },
+            {
+                "name": "3rd Brother",
+                "class": "man"
+            },
+            {
+                "name": "4th Brother",
+                "class": "man"
+            },
+            {
+                "name": "5th Brother",
+                "class": "man"
+            },
+            {
+                "name": "1st Sister",
+                "class": "woman"
+            },
+            {
+                "name": "2nd Sister",
+                "class": "woman"
+            }
+        ]
+    }]
+}]
+
+
+
+treeDataHo = [{
+    "name": "Ho Shui Pong",
+    "class": "man",
+    "marriages": [{
+        "spouse": {
+        "name": "Cai Gui",
+        "class": "woman",
+        },
+        "children": [
+            {
+                "name": "1st Brother",
+                "class": "man"
+            },
+            {
+                "name": "2nd Brother",
+                "class": "man"
+            },
+            {
+                "name": "3rd Brother",
+                "class": "man"
+            },
+            {
+                "name": "1st Sister",
+                "class": "woman"
+            },
+            {
+                "name": "2nd Sister",
+                "class": "woman"
+            },
+            {
+                "name": "3rd Sister",
+                "class": "woman"
+            },
+            {
+                "name": "4th Sister",
+                "class": "woman"
+            },
+            {
+                "name": "5th Sister",
+                "class": "woman"
+            },
+            {
+                "name": "6th Sister",
+                "class": "woman"
+            },
+            {
+                "name": "7th Sister",
+                "class": "woman"
+            },
+            {
+                "name": "Sing Ho (1965)",
+                "class": "man",
+                "marriages": [{
+                    "spouse": {
+                    "name": "Erica Yang (1962)",
+                    "class": "woman"
+                    },
+                    "children": [
+                        {
+                            "name": "Travis Ho",
+                            "class": "man",
+                        },
+                        {
+                            "name": "Rebecca Ho (1996)",
+                            "class": "woman"
+                        }
+                    ]
+                }]
+            }
+        ]
+    }]
+}]

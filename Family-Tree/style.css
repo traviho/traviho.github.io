@@ -1,34 +1,93 @@
+/* General */
+/*
+Monochromatic Colors:
+0- EBF7E3
+1- 9BD770
+2- 66AF31
+3- 375F1B
+4- 1B3409
+
+Grey:
+7E6464
+*/
 body {
-font: 10px sans-serif;
+    background-color: #EBF7E3 !important;
 }
 
+.background-mono-0 {
+    background-color: #EBF7E3 !important;
+}
+
+.background-mono-1 {
+    background-color: #9BD770 !important;
+}
+
+.border-radius-50 {
+    border-radius: 50%;
+}
+
+.text-color-3 {
+    color: #375F1B;
+}
+
+.text-grey {
+    color: #7E6464;
+}
+
+.text-serif {
+    font-family: 'Playfair Display', serif;
+}
+
+.text-sans {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.text-padded {
+    padding: 1rem;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #375F1B;
+}
+
+.navbar-brand {
+    color: #9BD770;
+    font-family: 'Playfair Display', serif;
+}
+
+.navbar-header a:hover {
+    color: #9BD770;
+}
+
+/* DTree */
 .linage {
-fill: none;
-stroke: #000;
+    fill: none;
+    stroke: #375F1B;
+    stroke-width: 0.2rem;
 }
-
 .marriage {
-fill: none;
-stroke: black;
-}
-
-.man {
-background-color: lightblue;
-border-style: solid;
-border-width: 1px;
+    fill: none;
+    stroke: #375F1B;
+    stroke-width: 0.2rem;
 }
 
 .woman {
-background-color: pink;
-border-style: solid;
-border-width: 1px;
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: #66AF31;
+}
+.man {
+    padding: 1rem;
+    border-radius: 50%;
+    background-color: #66AF31;
 }
 
-.emphasis {
-font-style: italic;
+.nodeText {
+    vertical-align: middle;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1em;
+    font-weight: 600;
 }
 
-p {
-padding: 0;
-margin: 0;
-}
+/* Modal */
